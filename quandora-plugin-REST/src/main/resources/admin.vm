@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>$i18n.getText("quandora.admin.label")</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResourcesForContext("quandora-plugin-REST")
+  </head>
+  <body>
+    <h1>$i18n.getText("quandora.admin.label")</h1>
+    <h4> All the information required here is relative to your quandora domain </h4>
+    <form id="admin" class="aui">
+      <div class="field-group">
+        <label for="domain">$i18n.getText("quandora.admin.domain.label") </label>
+        <input type="text" id="domain" name="domain" class="text" placeholder="example.quandora.com">
+      </div>
+      <div class="field-group">
+        <label for="loginQuandoraREST">$i18n.getText("quandora.admin.login.label")</label>
+        <input type="text" id="loginQuandoraREST" name="loginQuandoraREST" class="text">
+       </div>
+       <div class="field-group">
+         <label for="pass">$i18n.getText("quandora.admin.pass.label")</label>
+         <input type="password" id="pass" name="pass" class="password">
+       </div>
+       <div class="field-group">
+         <input type="submit" value="Save" class="button">
+       </div>
+    </form>
+  </body>
+</html>
