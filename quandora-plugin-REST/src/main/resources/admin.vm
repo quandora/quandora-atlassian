@@ -5,6 +5,7 @@
     $webResourceManager.requireResourcesForContext("quandora-plugin-REST")
   </head>
   <body>
+    <div id="aui-message-bar"></div>
     <h1>$i18n.getText("quandora.admin.label")</h1>
     <h4> All the information required here is relative to your quandora domain </h4>
     <form id="admin" class="aui">

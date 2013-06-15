@@ -23,7 +23,7 @@ AJS.toInit(function() {
      
   function populateForm() {
     AJS.$.ajax({
-      url: GetBaseUrl() + "/rest/quandora-admin/1.0/",
+      url: GetBaseUrl() + "/rest/quandora-rest/1.0/admin-resources",
       dataType: "json",
       success: function(config) {
         AJS.$("#domain").attr("value", config.domain);
@@ -35,13 +35,16 @@ AJS.toInit(function() {
   
   function updateConfig() {
     AJS.$.ajax({
-      url: GetBaseUrl() + "/rest/quandora-admin/1.0/",
+      url: GetBaseUrl() + "/rest/quandora-rest/1.0/admin-resources",
       type: "PUT",
       contentType: "application/json",
       data: '{ "domain": "' + AJS.$("#domain").attr("value") + '", "login": ' + '"' +  AJS.$("#loginQuandoraREST").attr("value")  + '", "pass": ' + '"' +  AJS.$("#pass").attr("value")+ '" }',
       processData: false,
       success: function(){
-        console.log('Requete passé avec succès');
+        AJS.messages.success({
+           title:"This is a title in a Default message.",
+           body: "<p> And this is just content in a Default message.</p>"
+        });
       },
       error: function (xhr, ajaxOptions, thrownError) {
         console.error(xhr.status);

@@ -21,7 +21,7 @@ import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
  
-@Path("/")
+@Path("/admin-resources")
 public class ConfigResource
 {
   private final UserManager userManager;
