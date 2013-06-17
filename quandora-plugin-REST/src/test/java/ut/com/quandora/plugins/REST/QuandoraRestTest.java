@@ -1,15 +1,10 @@
 package ut.com.quandora.plugins.REST;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.After;
 import org.junit.Before;
-import org.mockito.Mockito;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import com.quandora.plugins.REST.QuandoraRest;
-import com.quandora.plugins.REST.QuandoraRestModel;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.GenericEntity;
+import org.junit.Test;
 
 public class QuandoraRestTest {
 
@@ -25,10 +20,10 @@ public class QuandoraRestTest {
 
     @Test
     public void messageIsValid() {
-       // QuandoraRest resource = new QuandoraRest();
+        // QuandoraRest resource = new QuandoraRest();
 
         //Response response = resource.getMessage();
-       // final QuandoraRestModel message = (QuandoraRestModel) response.getEntity();
+        // final QuandoraRestModel message = (QuandoraRestModel) response.getEntity();
 
         assertEquals("wrong message","Hello World","Hello World");
     }

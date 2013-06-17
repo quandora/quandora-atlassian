@@ -5,24 +5,36 @@
     $webResourceManager.requireResourcesForContext("quandora-plugin-REST")
   </head>
   <body>
-    <div id="aui-message-bar"></div>
     <h1>$i18n.getText("quandora.admin.label")</h1>
-    <h4> All the information required here is relative to your quandora domain </h4>
-    <form id="admin" class="aui">
+    <h4> All the information required here is relative to your quandora account and domain </h4>
+    <form id="admin" name="quandoraAdmin" class="aui">
       <div class="field-group">
-        <label for="domain">$i18n.getText("quandora.admin.domain.label") </label>
-        <input type="text" id="domain" name="domain" class="text" placeholder="example.quandora.com">
+        <label for="domain">$i18n.getText("quandora.admin.domain.label")
+          <span class="aui-icon icon-required">
+            <span>(required)</span>
+          </span>
+        </label>
+        <input type="text" id="domain" name="domain" class="text" placeholder="example.quandora.com" pattern="[a-zA-Z0-9]+(\.quandora\.com)$" required>
       </div>
       <div class="field-group">
-        <label for="loginQuandoraREST">$i18n.getText("quandora.admin.login.label")</label>
-        <input type="text" id="loginQuandoraREST" name="loginQuandoraREST" class="text">
+        <label for="loginQuandoraREST">$i18n.getText("quandora.admin.login.label")
+          <span class="aui-icon icon-required">
+            <span>(required)</span>
+          </span>
+        </label>
+        <input type="email" name="mail" placeholder="quandora@atlassian.com" id="loginQuandoraREST" name="loginQuandoraREST" class="text" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required>
        </div>
        <div class="field-group">
-         <label for="pass">$i18n.getText("quandora.admin.pass.label")</label>
-         <input type="password" id="pass" name="pass" class="password">
+         <label for="pass">$i18n.getText("quandora.admin.pass.label")
+          <span class="aui-icon icon-required">
+            <span>(required)</span>
+          </span>
+         </label>
+         <input type="password" id="pass" name="pass" class="password" required>
        </div>
        <div class="field-group">
          <input type="submit" value="Save" class="button">
+         <div id="aui-message-bar"></div>
        </div>
     </form>
   </body>

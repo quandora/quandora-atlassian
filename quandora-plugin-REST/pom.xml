@@ -10,7 +10,7 @@
         <url>http://www.quandora.com/</url>
     </organization>
     <name>Quandora Commons</name>
-    <description>This is the common dependency plugin for Atlassian quandora plugins.</description>
+    <description>This is the common dependency plugin for Atlassian quandora plugins. This plugin provides the REST service necessary fo the use of the other quandora plugins.</description>
     <packaging>atlassian-plugin</packaging>
     <dependencies>
         <dependency>

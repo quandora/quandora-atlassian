@@ -42,8 +42,11 @@ AJS.toInit(function() {
       processData: false,
       success: function(){
         AJS.messages.success({
-           title:"This is a title in a Default message.",
-           body: "<p> And this is just content in a Default message.</p>"
+          title:"Successfully Saved",
+          fadeout: true,
+          delay: 2000,
+          duration: 10000,
+          body: ""
         });
       },
       error: function (xhr, ajaxOptions, thrownError) {
@@ -60,3 +63,4 @@ AJS.toInit(function() {
       updateConfig();
   });
 });
+
