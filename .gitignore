@@ -4,3 +4,5 @@ RemoteSystemsTempFiles/
 quandora-plugin-REST/amps-standalone/
 quandora-plugin-REST/target/
 amps-standalone/
+quandora-plugin-jira/target/
+save/

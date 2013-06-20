@@ -31,9 +31,9 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
 import com.quandora.plugins.REST.Admin.ConfigResource.Config;
-import com.quandora.plugins.REST.clients.QuandoraResponse;
-import com.quandora.plugins.REST.clients.Request;
-import com.quandora.plugins.REST.clients.RestClient;
+import com.quandora.plugins.REST.client.QuandoraResponse;
+import com.quandora.plugins.REST.client.Request;
+import com.quandora.plugins.REST.client.RestClient;
 
 /**
  * A resource of message.

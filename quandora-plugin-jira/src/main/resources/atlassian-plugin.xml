@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/logo.png</param>
+    <bundle-instructions>
+          <Import-Package>com.quandora.plugins.REST.*</Import-Package>
+    </bundle-instructions>
+  </plugin-info>
+  
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="quandora-plugin-jira"/>
+  <!-- add our web resources -->
+  <web-resource key="quandora-plugin-jira-resources" name="quandora-plugin-jira Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="quandora-plugin-jira.css" location="/css/quandora-plugin-jira.css"/>
+    <resource type="download" name="quandora-plugin-jira.js" location="/js/quandora-plugin-jira.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>quandora-plugin-jira</context>
+  </web-resource>
+  <!-- publish our component -->
+  <!-- import from the product container -->
+  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+  
+  <web-panel name="RelatedQuestionIndicatorImpl" i18n-name-key="related-question-indicator.name" key="related-question-indicator" location="atl.jira.view.issue.right.context" weight="1000">
+    <label key="related-question-indicator.label"/>
+    <description key="related-question-indicator.description">This is the plugin view in the issue context</description>
+    <context-provider class="com.quandora.plugins.jira.RelatedQuestionIndicatorImpl"/>
+    <resource name="view" type="velocity" location="related-question-indicator.vm"/>
+  </web-panel>
+</atlassian-plugin>

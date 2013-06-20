@@ -14,7 +14,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
    limitations under the License.
  */
 
-package com.quandora.plugins.REST.clients;
+package com.quandora.plugins.client;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,21 +25,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-import com.quandora.plugins.REST.Admin.ConfigResource.Config;
-import com.sun.jersey.core.util.Base64;
-
 
 /**
  * @author Nicolas Joseph
  *
  */
 public class RestClient{
-
-    protected Config config;
-
-    public RestClient(Config config){
-        this.config=config;
-    }
 
     /**
      * The default implementation use the Java URL
@@ -101,14 +92,7 @@ public class RestClient{
 
     protected Request createRequest(String url, String method) {
         Request req = new Request(url, method);
-        req.addHeader("Authorization", "Basic "+createEncodedText(config.getLogin(),config.getPass()));
         return req;
-    }
-
-    private static String createEncodedText(final String username, final String password) {
-        final String pair = username + ":" + password;
-        final byte[] encodedBytes = Base64.encode(pair.getBytes());
-        return new String(encodedBytes);
     }
 
 }

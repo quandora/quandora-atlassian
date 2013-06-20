@@ -14,7 +14,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
    limitations under the License.
  */
 
-package com.quandora.plugins.REST.clients;
+package com.quandora.plugins.client;
 
 import java.util.HashMap;
 import java.util.Map;
