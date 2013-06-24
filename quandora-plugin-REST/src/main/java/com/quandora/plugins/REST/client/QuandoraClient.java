@@ -26,7 +26,6 @@ import java.net.URL;
 import java.util.Map;
 
 import com.quandora.plugins.REST.Admin.ConfigResource.Config;
-import com.sun.jersey.core.util.Base64;
 
 
 /**
@@ -101,13 +100,7 @@ public class QuandoraClient {
 
     protected Request createRequest(String url, String method) {
         Request req = new Request(url, method);
-        req.addHeader("Authorization", "Basic "+createEncodedPass(config.getLogin(),config.getPass()));
+        req.addHeader("Authorization", "Basic "+config.getPass());
         return req;
-    }
-
-    private static String createEncodedPass(final String username, final String password) {
-        final String pair = username + ":" + password;
-        final byte[] encodedBytes = Base64.encode(pair.getBytes());
-        return new String(encodedBytes);
     }
 }

@@ -28,7 +28,6 @@ AJS.toInit(function() {
       success: function(config) {
         AJS.$("#domain").attr("value", config.domain);
         AJS.$("#loginQuandoraREST").attr("value", config.login);
-        AJS.$("#pass").attr("value", config.pass);
       }
     });
   }
@@ -38,7 +37,7 @@ AJS.toInit(function() {
       url: GetBaseUrl() + "/rest/quandora-rest/1.0/admin-resources",
       type: "PUT",
       contentType: "application/json",
-      data: '{ "domain": "' + AJS.$("#domain").attr("value") + '", "login": ' + '"' +  AJS.$("#loginQuandoraREST").attr("value")  + '", "pass": ' + '"' +  AJS.$("#pass").attr("value")+ '" }',
+      data: '{ "domain": "' + AJS.$("#domain").attr("value") + '", "login": ' + '"' +  AJS.$("#loginQuandoraREST").attr("value")  + '", "pass": ' + '"' + $.base64.encode(AJS.$("#loginQuandoraREST").attr("value")+":"+AJS.$("#pass").attr("value"))+ '" }',
       processData: false,
       success: function(){
         AJS.messages.success({
