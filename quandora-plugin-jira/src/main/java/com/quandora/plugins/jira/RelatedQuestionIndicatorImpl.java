@@ -15,62 +15,49 @@ Licensed under the Apache License, Version 2.0 (the "License");
  */
 package com.quandora.plugins.jira;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.codehaus.jackson.map.ObjectMapper;
-
 import com.atlassian.crowd.embedded.api.User;
-import com.atlassian.jira.component.ComponentAccessor;
-import com.atlassian.jira.config.properties.APKeys;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.plugin.webfragment.contextproviders.AbstractJiraContextProvider;
 import com.atlassian.jira.plugin.webfragment.model.JiraHelper;
 import com.atlassian.sal.api.ApplicationProperties;
-import com.quandora.plugins.client.QuandoraResponse;
-import com.quandora.plugins.client.Request;
-import com.quandora.plugins.client.RestClient;
+import com.quandora.plugins.REST.api.QuandoraAPI;
 
 
 @SuppressWarnings("unchecked")
 public class RelatedQuestionIndicatorImpl extends AbstractJiraContextProvider
 {
     private final ApplicationProperties applicationProperties;
+    private final QuandoraAPI QA;
 
-    public RelatedQuestionIndicatorImpl(ApplicationProperties applicationProperties)
+    public RelatedQuestionIndicatorImpl(ApplicationProperties applicationProperties, QuandoraAPI QA)
     {
         this.applicationProperties = applicationProperties;
+        this.QA = QA;
     }
 
     @Override
     public Map getContextMap(User user, JiraHelper jiraHelper) {
 
+        Map contextMap = new HashMap();
         Issue currentIssue = (Issue) jiraHelper.getContextParams().get("issue");
-        String queryText = currentIssue.getDescription() + " " + currentIssue.getSummary() + " " + currentIssue.getKey();
-
-        RestClient client = new RestClient();
-        String baseURL = ComponentAccessor.getApplicationProperties().getString(APKeys.JIRA_BASEURL);
-
-        Request req = client.createRequest(baseURL+"/rest/quandora-rest/1.0/?request=/m/json/search?q="+queryText+"&l=5");
-        System.out.println(req.getUrl());
+        String queryText = currentIssue.getSummary() + " " + currentIssue.getKey();
+        if (currentIssue.getDescription() != null){
+            queryText += " "+currentIssue.getDescription();
+        }
+        queryText=queryText.trim();
 
         try {
-            return getQuestionData(req,client);
+            contextMap.put("questionList", QA.getQuestions(queryText));
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return null;
+
+        return contextMap;
     }
 
-    private Map getQuestionData(Request req, RestClient client) throws Exception{
-        QuandoraResponse JsonResponse = client.execute(req);
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String,Object> questionData = mapper.readValue(JsonResponse.result, Map.class);
 
-        questionData = mapper.readValue(questionData.get("data").toString(), Map.class);
-
-        questionData = mapper.readValue(questionData.get("result").toString(), Map.class);
-
-        return questionData;
-    }
 }

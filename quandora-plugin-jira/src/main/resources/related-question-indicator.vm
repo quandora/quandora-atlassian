@@ -1,1 +1,7 @@
-<span> test </span>
+#if $questionList
+    #foreach( $question in $questionList )
+        <span>$question.getTitle() </span>
+    #end
+#else
+    <span> No related question found </span>
+#end

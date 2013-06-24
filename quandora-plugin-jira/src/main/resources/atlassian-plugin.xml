@@ -26,7 +26,11 @@
   <!-- import from the product container -->
   <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
   
-  <web-panel name="RelatedQuestionIndicatorImpl" i18n-name-key="related-question-indicator.name" key="related-question-indicator" location="atl.jira.view.issue.right.context" weight="1000">
+  <component-import key="quandoraService">
+        <interface>com.quandora.plugins.REST.api.QuandoraAPI</interface>
+  </component-import>
+  
+  <web-panel name="RelatedQuestionIndicatorImpl" i18n-name-key="related-question-indicator.name" key="related-question-indicator" location="atl.jira.view.issue.right.context" weight="10000">
     <label key="related-question-indicator.label"/>
     <description key="related-question-indicator.description">This is the plugin view in the issue context</description>
     <context-provider class="com.quandora.plugins.jira.RelatedQuestionIndicatorImpl"/>

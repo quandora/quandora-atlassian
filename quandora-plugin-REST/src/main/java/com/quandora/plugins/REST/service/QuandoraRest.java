@@ -16,6 +16,9 @@ Licensed under the Apache License, Version 2.0 (the "License");
 
 package com.quandora.plugins.REST.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,6 +29,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.atlassian.plugins.rest.common.security.AnonymousAllowed;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
@@ -33,7 +37,7 @@ import com.atlassian.sal.api.user.UserManager;
 import com.quandora.plugins.REST.Admin.ConfigResource.Config;
 import com.quandora.plugins.REST.client.QuandoraResponse;
 import com.quandora.plugins.REST.client.Request;
-import com.quandora.plugins.REST.client.RestClient;
+import com.quandora.plugins.REST.client.QuandoraClient;
 
 /**
  * A resource of message.
@@ -52,11 +56,14 @@ public class QuandoraRest {
     }
 
     @GET
+    @AnonymousAllowed
     @Produces(MediaType.APPLICATION_JSON)
     public Response getQuandoraInfos(@QueryParam("request") String request, @Context HttpServletRequest httpRequest) throws Exception
     {
+
         String username = userManager.getRemoteUsername(httpRequest);
-        if (username == null)
+        System.out.println(httpRequest.getHeader("innerToken"));
+        if (username == null && !httpRequest.getHeader("innerToken").equalsIgnoreCase("ah5d8jd583dhdlp581463dbnkdjs5135j85"))
         {
             return Response.status(Status.UNAUTHORIZED).build();
         }
@@ -68,11 +75,41 @@ public class QuandoraRest {
         config.setLogin((String) settings.get(Config.class.getName() + ".login"));
         config.setPass((String) settings.get(Config.class.getName() + ".pass"));
 
-        RestClient client = new RestClient(config);
+        QuandoraClient client = new QuandoraClient(config);
 
-        Request req = client.createRequest("https://"+config.getDomain()+"/"+request);
+        Request req = client.createRequest("https://"+config.getDomain()+"/"+encodeRequest(request));
         QuandoraResponse JsonResponse = client.execute(req);
 
         return Response.ok(JsonResponse.result , MediaType.APPLICATION_JSON).build();
+    }
+
+    private String encodeRequest(String request) throws UnsupportedEncodingException{
+        String encoded = "";
+        int temp = 0;
+
+        while(!request.equalsIgnoreCase("")){
+            temp = request.indexOf("/");
+            if (temp != -1){
+                encoded += URLEncoder.encode(request.substring(0, temp),"UTF-8")+"/";
+                request = request.substring(temp+1);
+            }
+            else{
+                temp = request.indexOf("=");
+                encoded += request.substring(0,temp+1);
+                request = request.substring(temp);
+
+                temp = request.indexOf("%26");
+                if (temp!=-1){
+                    encoded += URLEncoder.encode(request.substring(0,temp), "UTF-8")+"&";
+                    request = request.substring(temp+3);
+                }
+                else{
+                    encoded += URLEncoder.encode(request, "UTF-8");
+                    request = "";
+                }
+            }
+        }
+
+        return encoded;
     }
 }

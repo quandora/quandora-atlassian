@@ -22,6 +22,10 @@
     <context>quandora-plugin-REST</context>
   </web-resource>
   <!-- publish our component -->
+  <component key="quandoraService" class="com.quandora.plugins.REST.api.QuandoraService" public="true">
+        <description>Provides a service to retrieve questions from quandora to inject it into Atlassian application</description>
+        <interface>com.quandora.plugins.REST.api.QuandoraAPI</interface>
+  </component>
 
   <!-- import from the product container -->
   <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
@@ -29,17 +33,29 @@
   <component-import key="loginUriProvider" interface="com.atlassian.sal.api.auth.LoginUriProvider"/>
   <component-import key="renderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer"/>
   
+  
   <servlet key="admin-servlet" class="com.quandora.plugins.REST.Admin.AdminServlet">
     <url-pattern>/quandora/admin</url-pattern>
   </servlet>
   <component-import key="pluginSettingsFactory" interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory"/>
   <component-import key="transactionTemplate" interface="com.atlassian.sal.api.transaction.TransactionTemplate"/>
   
+  <!-- Web Items for the different products -->
   <web-item key="refapp-menu-item" name="Quandora Admin" section="system.admin/general" weight="10" application="refapp">
     <description>Link to Quandora administration page.</description>
     <label key="quandora.admin.label"/>
     <link linkId="quandora-admin-link">/plugins/servlet/quandora/admin</link>
   </web-item>
+  <web-item key="jira-menu-item" name="Quandora Admin" section="system.admin/general" weight="10" application="jira">
+    <description>Link to Quandora administration page for Jira</description> 
+    <label key="quandora.admin.label" /> 
+    <link linkId="quandora-admin-link">/plugins/servlet/quandora/admin</link> 
+  </web-item>
+  <web-item key="conf-menu-item" name="Quandora Admin" section="system.admin/configuration" weight="10"> 
+    <description>Link to Quandora administration page</description> 
+    <label key="quandora.admin.label" /> 
+    <link linkId="quandora-admin-link">/plugins/servlet/quandora/admin</link> 
+  </web-item> 
   
   <rest name="Quandora Rest" i18n-name-key="quandora-rest.name" key="quandora-rest" path="/quandora-rest" version="1.0">
     <description key="quandora-rest.description">The Quandora Rest Plugin</description>

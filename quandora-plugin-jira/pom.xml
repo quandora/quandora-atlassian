@@ -108,6 +108,12 @@
                         <!-- Specify what package to include. Ensure that any packages from OBRs are also listed. -->
                         <Import-Package>
                             com.quandora.plugins.REST.*;version="${quandora.rest.version}",
+                            com.atlassian.jira.plugin.webfragment.contextproviders ; version=0,
+                            com.atlassian.jira.plugin.webfragment.model ; version=0,
+                            com.atlassian.jira.issue; version=0,
+                            com.atlassian.crowd.embedded.api; version=0,
+                            com.atlassian.jira.component; version=0,
+                            com.atlassian.jira.config.properties; version=0
                         </Import-Package>
                         <CONF_COMM/>
                     </instructions>
