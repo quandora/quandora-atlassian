@@ -1,7 +1,9 @@
-#if $questionList
+#if ($questionList)
+<ul>
     #foreach( $question in $questionList )
-        <span>$question.getTitle() </span>
+        <li><a href="https://app.quandora.com/object/$question.getUid()"> $question.getTitle() </a></li>
     #end
+</ul>
 #else
     <span> No related question found </span>
 #end

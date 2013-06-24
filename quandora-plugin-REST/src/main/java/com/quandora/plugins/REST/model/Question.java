@@ -2,8 +2,10 @@ package com.quandora.plugins.REST.model;
 
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 
+@JsonIgnoreProperties({"author","tags"})
 public class Question {
     private static final long serialVersionUID = 1L;
 
@@ -36,10 +38,6 @@ public class Question {
     protected String authorId;
 
     protected String baseId;
-
-
-
-
 
     /**
      * @return the uid

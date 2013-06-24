@@ -41,16 +41,17 @@
   <component-import key="transactionTemplate" interface="com.atlassian.sal.api.transaction.TransactionTemplate"/>
   
   <!-- Web Items for the different products -->
-  <web-item key="refapp-menu-item" name="Quandora Admin" section="system.admin/general" weight="10" application="refapp">
-    <description>Link to Quandora administration page.</description>
-    <label key="quandora.admin.label"/>
-    <link linkId="quandora-admin-link">/plugins/servlet/quandora/admin</link>
-  </web-item>
-  <web-item key="jira-menu-item" name="Quandora Admin" section="system.admin/general" weight="10" application="jira">
+  
+  <web-section key="quandoraSection" location="admin_plugins_menu">
+    <label key="quandora.admin.section.label"/> <!-- This element is optional -->
+  </web-section>
+  
+  <web-item key="jira-menu-item" name="Quandora Admin" section="admin_plugins_menu/quandoraSection" weight="10" application="jira">
     <description>Link to Quandora administration page for Jira</description> 
     <label key="quandora.admin.label" /> 
     <link linkId="quandora-admin-link">/plugins/servlet/quandora/admin</link> 
   </web-item>
+  
   <web-item key="conf-menu-item" name="Quandora Admin" section="system.admin/configuration" weight="10"> 
     <description>Link to Quandora administration page</description> 
     <label key="quandora.admin.label" /> 

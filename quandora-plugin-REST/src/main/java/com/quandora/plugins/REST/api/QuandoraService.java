@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.JsonToken;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -43,15 +43,18 @@ public class QuandoraService implements QuandoraAPI{
         return ParseJSONQuestionResponse(client.execute(req));
     }
 
-    private List<Question> ParseJSONQuestionResponse(QuandoraResponse r) throws JsonProcessingException, IOException{
+    private List<Question> ParseJSONQuestionResponse(QuandoraResponse r) throws JsonParseException, IOException {
 
         List<Question> questionList = new ArrayList<Question>();
         ObjectMapper mapper = new ObjectMapper();
+
         JsonNode rootNode = mapper.readTree(r.result);
-        String questionJSONList = rootNode.path("data").path("result").getTextValue();
+
+        JsonNode questionJSONList = rootNode.findPath("data").findValue("result");
 
         JsonFactory f = new JsonFactory();
-        JsonParser jp = f.createJsonParser(questionJSONList);
+
+        JsonParser jp = f.createJsonParser(questionJSONList.toString());
         // advance stream to START_ARRAY first:
         jp.nextToken();
         // and then each time, advance to opening START_OBJECT
