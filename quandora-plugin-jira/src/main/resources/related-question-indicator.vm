@@ -1,9 +1,17 @@
+
 #if ($questionList)
-<ul>
     #foreach( $question in $questionList )
-        <li><a href="https://app.quandora.com/object/$question.getUid()"> $question.getTitle() </a></li>
+        <div class="question">
+          <h3><a href="https://app.quandora.com/object/$question.getUid()" class="question-link">$question.getTitle() </a></h3>
+          <p class="summary">$question.getSummary()</p> 
+          <div class="question-footer" style='clear: both; color: gray;'>
+            <span title="Answers"><i class='aui-icon aui-icon-small aui-iconfont-comment'></i> $question.getAnswers()</span>
+            <span title="Votes"><i class='aui-icon aui-icon-small aui-iconfont-add'></i> $question.getVotes()</span>
+            <span title="Views"><i class='aui-icon aui-icon-small aui-iconfont-view'></i> $question.getViews()</span>
+          </div>
+        </div>
+        <hr>    
     #end
-</ul>
 #else
     <span> No related question found </span>
 #end

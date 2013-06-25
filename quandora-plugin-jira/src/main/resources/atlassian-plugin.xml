@@ -18,8 +18,10 @@
   <web-resource key="quandora-plugin-jira-resources" name="quandora-plugin-jira Web Resources">
     <dependency>com.atlassian.auiplugin:ajs</dependency>
     <resource type="download" name="quandora-plugin-jira.css" location="/css/quandora-plugin-jira.css"/>
+    
     <resource type="download" name="quandora-plugin-jira.js" location="/js/quandora-plugin-jira.js"/>
     <resource type="download" name="images/" location="/images"/>
+    <context>jira.view.issue</context>
     <context>quandora-plugin-jira</context>
   </web-resource>
   <!-- publish our component -->
