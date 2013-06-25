@@ -8,17 +8,15 @@
     <param name="plugin-icon">images/pluginIcon.png</param>
     <param name="plugin-logo">images/logo.png</param>
     <bundle-instructions>
-          <Import-Package>com.quandora.plugins.REST.*</Import-Package>
+      <Import-Package>com.quandora.plugins.REST.*</Import-Package>
     </bundle-instructions>
   </plugin-info>
-  
   <!-- add our i18n resource -->
   <resource type="i18n" name="i18n" location="quandora-plugin-jira"/>
   <!-- add our web resources -->
   <web-resource key="quandora-plugin-jira-resources" name="quandora-plugin-jira Web Resources">
     <dependency>com.atlassian.auiplugin:ajs</dependency>
     <resource type="download" name="quandora-plugin-jira.css" location="/css/quandora-plugin-jira.css"/>
-    
     <resource type="download" name="quandora-plugin-jira.js" location="/js/quandora-plugin-jira.js"/>
     <resource type="download" name="images/" location="/images"/>
     <context>jira.view.issue</context>
@@ -27,11 +25,9 @@
   <!-- publish our component -->
   <!-- import from the product container -->
   <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
-  
   <component-import key="quandoraService">
-        <interface>com.quandora.plugins.REST.api.QuandoraAPI</interface>
+    <interface>com.quandora.plugins.REST.api.QuandoraAPI</interface>
   </component-import>
-  
   <web-panel name="RelatedQuestionIndicatorImpl" i18n-name-key="related-question-indicator.name" key="related-question-indicator" location="atl.jira.view.issue.right.context" weight="10000">
     <label key="related-question-indicator.label"/>
     <description key="related-question-indicator.description">This is the plugin view in the issue context</description>

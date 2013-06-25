@@ -76,6 +76,7 @@
             <version>1.8.5</version>
             <scope>test</scope>
         </dependency>
+       
     </dependencies>
     <build>
         <plugins>
@@ -97,7 +98,7 @@
 						</pluginArtifact>
 					</pluginArtifacts>
 					-->
-					<!-- Specify what to bundle in the OBR -->
+                    <!-- Specify what to bundle in the OBR -->
                     <pluginDependencies>
                         <pluginDependency>
                             <groupId>com.quandora.plugins.REST</groupId>
@@ -106,15 +107,7 @@
                     </pluginDependencies>
                     <instructions>
                         <!-- Specify what package to include. Ensure that any packages from OBRs are also listed. -->
-                        <Import-Package>
-                            com.quandora.plugins.REST.*;version="${quandora.rest.version}",
-                            com.atlassian.jira.plugin.webfragment.contextproviders ; version=0,
-                            com.atlassian.jira.plugin.webfragment.model ; version=0,
-                            com.atlassian.jira.issue; version=0,
-                            com.atlassian.crowd.embedded.api; version=0,
-                            com.atlassian.jira.component; version=0,
-                            com.atlassian.jira.config.properties; version=0
-                        </Import-Package>
+                        <Import-Package>com.quandora.plugins.REST.*;version="${quandora.rest.version}", com.atlassian.jira.plugin.webfragment.contextproviders ; version=0, com.atlassian.jira.plugin.webfragment.model ; version=0, com.atlassian.jira.issue; version=0, com.atlassian.crowd.embedded.api; version=0, com.atlassian.jira.component; version=0, com.atlassian.jira.config.properties; version=0</Import-Package>
                         <CONF_COMM/>
                     </instructions>
                 </configuration>

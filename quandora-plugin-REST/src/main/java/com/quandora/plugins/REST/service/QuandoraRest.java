@@ -29,15 +29,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.atlassian.plugins.rest.common.security.AnonymousAllowed;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
 import com.quandora.plugins.REST.Admin.ConfigResource.Config;
+import com.quandora.plugins.REST.client.QuandoraClient;
 import com.quandora.plugins.REST.client.QuandoraResponse;
 import com.quandora.plugins.REST.client.Request;
-import com.quandora.plugins.REST.client.QuandoraClient;
 
 /**
  * A resource of message.
@@ -56,14 +55,13 @@ public class QuandoraRest {
     }
 
     @GET
-    @AnonymousAllowed
     @Produces(MediaType.APPLICATION_JSON)
     public Response getQuandoraInfos(@QueryParam("request") String request, @Context HttpServletRequest httpRequest) throws Exception
     {
 
         String username = userManager.getRemoteUsername(httpRequest);
         System.out.println(httpRequest.getHeader("innerToken"));
-        if (username == null && !httpRequest.getHeader("innerToken").equalsIgnoreCase("ah5d8jd583dhdlp581463dbnkdjs5135j85"))
+        if (username == null)
         {
             return Response.status(Status.UNAUTHORIZED).build();
         }

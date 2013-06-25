@@ -1,4 +1,3 @@
-
 #if ($questionList)
     #foreach( $question in $questionList )
         <div class="question">

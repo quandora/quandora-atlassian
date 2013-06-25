@@ -56,6 +56,7 @@ public class RelatedQuestionIndicatorImpl extends AbstractJiraContextProvider
             e.printStackTrace();
         }
 
+        contextMap.put("quandoraDomain", QA.getQuandoraDomain());
         return contextMap;
     }
 

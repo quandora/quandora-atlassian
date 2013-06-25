@@ -66,4 +66,9 @@ public class QuandoraService implements QuandoraAPI{
         return questionList;
     }
 
+    @Override
+    public String getQuandoraDomain() {
+        return config.getDomain();
+    }
+
 }
