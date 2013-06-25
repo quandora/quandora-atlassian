@@ -1,5 +1,6 @@
 /*
-Copyright 2013 Nicolas Joseph
+Copyright 2013 Quandora Corp
+    Contributors :  Nicolas Joseph
 
 Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -13,7 +14,6 @@ Licensed under the Apache License, Version 2.0 (the "License");
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-
 package com.quandora.plugins.REST.Admin;
 
 import java.io.IOException;
@@ -28,6 +28,12 @@ import com.atlassian.sal.api.auth.LoginUriProvider;
 import com.atlassian.sal.api.user.UserManager;
 import com.atlassian.templaterenderer.TemplateRenderer;
 
+/**
+ * Quandora plugin administration Servlet. It is used to get access to the quandora plugin Administration page
+ * 
+ * @author Nicolas Joseph
+ *
+ */
 public class AdminServlet extends HttpServlet
 {
 

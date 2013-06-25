@@ -1,5 +1,6 @@
 /*
-Copyright 2013 Nicolas Joseph
+Copyright 2013 Quandora Corp
+    Contributors :  Nicolas Joseph
 
 Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -39,7 +40,10 @@ import com.quandora.plugins.REST.client.QuandoraResponse;
 import com.quandora.plugins.REST.client.Request;
 
 /**
- * A resource of message.
+ * Acces to Quandora REST API. This is a REST proxy
+ * It is not yet used by the plugin
+ * 
+ * @author Nicolas Joseph
  */
 @Path("/")
 public class QuandoraRest {
@@ -81,6 +85,12 @@ public class QuandoraRest {
         return Response.ok(JsonResponse.result , MediaType.APPLICATION_JSON).build();
     }
 
+    /**
+     * Encode URL request
+     * @param request
+     * @return encoded String
+     * @throws UnsupportedEncodingException
+     */
     private String encodeRequest(String request) throws UnsupportedEncodingException{
         String encoded = "";
         int temp = 0;

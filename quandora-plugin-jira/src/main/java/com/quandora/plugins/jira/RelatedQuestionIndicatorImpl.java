@@ -1,5 +1,6 @@
 /*
-Copyright 2013 Nicolas Joseph
+Copyright 2013 Quandora Corp
+    Contributors :  Nicolas Joseph
 
 Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -25,7 +26,11 @@ import com.atlassian.jira.plugin.webfragment.model.JiraHelper;
 import com.atlassian.sal.api.ApplicationProperties;
 import com.quandora.plugins.REST.api.QuandoraAPI;
 
-
+/**
+ * Provides the content to print on the Jira Issue View. All the backend work is handle by the Quandora Commons plugin.
+ * @author Nicolas Joseph
+ *
+ */
 @SuppressWarnings("unchecked")
 public class RelatedQuestionIndicatorImpl extends AbstractJiraContextProvider
 {

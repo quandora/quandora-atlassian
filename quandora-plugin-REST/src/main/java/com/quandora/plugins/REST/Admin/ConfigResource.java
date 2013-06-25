@@ -1,5 +1,6 @@
 /*
-Copyright 2013 Nicolas Joseph
+Copyright 2013 Quandora Corp
+    Contributors :  Nicolas Joseph
 
 Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -36,7 +37,15 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
-
+/**
+ * Used to store and retrieve configuration informations
+ *      - Quandora Domain
+ *      - Login
+ *      - Password (encoded in Base64)
+ * 
+ * @author Nicolas Joseph
+ *
+ */
 @Path("/admin-resources")
 public class ConfigResource
 {
@@ -52,6 +61,13 @@ public class ConfigResource
         this.transactionTemplate = transactionTemplate;
     }
 
+    /**
+     * Method that Retrives configuration informations and produces
+     * the corresponding JSON
+     * 
+     * @param request
+     * @return JSON with domain, login and pass (in Base64)
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@Context HttpServletRequest request)
@@ -78,6 +94,13 @@ public class ConfigResource
         })).build();
     }
 
+    /**
+     * Saves the JSON data
+     * 
+     * @param config
+     * @param request
+     * @return Nothing
+     */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response put(final Config config, @Context HttpServletRequest request)
@@ -103,6 +126,15 @@ public class ConfigResource
         return Response.noContent().build();
     }
 
+    /**
+     * Configuration Object, it stores :
+     *      - Quandora Domain Name
+     *      - Login
+     *      - Pass (Base(64)
+     * 
+     * @author Nicolas
+     *
+     */
     @XmlRootElement
     @XmlAccessorType(XmlAccessType.FIELD)
     public static final class Config

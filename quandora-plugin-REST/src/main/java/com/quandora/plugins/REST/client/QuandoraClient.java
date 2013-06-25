@@ -1,5 +1,6 @@
 /*
-Copyright 2013 Nicolas Joseph
+Copyright 2013 Quandora Corp
+    Contributors :  Nicolas Joseph
 
 Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -13,7 +14,6 @@ Licensed under the Apache License, Version 2.0 (the "License");
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-
 package com.quandora.plugins.REST.client;
 
 import java.io.IOException;
@@ -29,6 +29,7 @@ import com.quandora.plugins.REST.Admin.ConfigResource.Config;
 
 
 /**
+ * Client that dialogs with the Quandora REST API
  * @author Nicolas Joseph
  *
  */
@@ -94,6 +95,11 @@ public class QuandoraClient {
         }
     }
 
+    /**
+     * Creates a request with this identification header
+     * @param url
+     * @return Request
+     */
     public Request createRequest(String url) {
         return createRequest(url, Request.GET);
     }
