@@ -12,8 +12,13 @@ Even though this plugin is fully fonctional however this is already deprecated a
 
 ----------------------------
 Install:
+
 1. Download the Atlassian sdk
+
 2. Clone the repo
+
 3. Compile both projects with the atlassian sdk
+
 4. Install the rest plugin from the .jar in the target REST folder
+
 5. install the Jira plugin from the .jar in the target JIRA folder
